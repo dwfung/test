@@ -19,7 +19,7 @@ ui <- fluidPage(
       checkboxGroupInput(inputId = "subset_occupation", 
                          label = "Include Occupations:", 
                          choices = unique(income$occupation), 
-                         selected = unique(income$occupation))),    # Main panel
+                         selected = unique(income$occupation))),    
     mainPanel(plotOutput(outputId = "myfigure"))
   )
 )
@@ -31,7 +31,7 @@ server <- function(input, output) {
                                        occupation %in% input$subset_occupation))
   
   output$myfigure <- renderPlot(ggplot(create_subset()) +
-                                  geom_boxplot(aes_string(x = "occupation", , y = input$set_yaxis)) +
+                                  geom_boxplot(aes_string(x = "occupation", y = input$set_yaxis)) +
                                   theme_bw(18) +
                                   theme(axis.text.x = element_text(angle = 90, hjust = 1)))
 }
